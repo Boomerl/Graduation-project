@@ -79,6 +79,17 @@ def run(a, b, c, d):
     return eval_results
 
 
+select = 0
+
+
+def isselected(flag):
+    global select
+    if flag == 1:
+        select = 1
+    else:
+        select = 0
+
+
 def classify():
 
     A, features, y_train, y_val, y_test, train_mask, val_mask, test_mask = load_data_v1('cora')
@@ -115,8 +126,10 @@ def classify():
                   weighted_metrics=['categorical_crossentropy', 'acc'])
 
     #可视化结果展示
-    #tf.keras.backend.clear_session()
-    model.load_weights('./best_model.h5')
+    global select
+    if select == 1:
+        model.load_weights('./best_model.h5')
+    #model.load_weights('./best_model.h5')
     gcn_embedding = model.layers[-1]
     embedding_model = Model(model.input, outputs=Lambda(lambda x: gcn_embedding.output)(model.input))
     embedding_weights = embedding_model.predict(model_input, batch_size=A.shape[0])

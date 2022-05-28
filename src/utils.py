@@ -178,7 +178,7 @@ def preprocess_adj(adj, symmetric=True):
 
 
 def plot_embeddings(embeddings, X, Y):
-
+    plt.cla()
     emb_list = []
     for k in X:
         emb_list.append(embeddings[k])

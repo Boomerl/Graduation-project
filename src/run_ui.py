@@ -1,4 +1,3 @@
-import imp
 import sys
 from PyQt5 import QtGui, QtWidgets
 from matplotlib import image
@@ -57,6 +56,7 @@ class MainWindow(QMainWindow):
     def band(self):
         self.ui.pushButton.clicked.connect(self.handle_click1)
         self.ui.pushButton_2.clicked.connect(self.handle_click2)
+        self.ui.radioButton.toggled.connect(self.handle_radio)
 
     def handle_click1(self):
         #获取参数
@@ -77,6 +77,12 @@ class MainWindow(QMainWindow):
         self.thread1.signal1.connect(self.showimage)
         self.thread1.signal2.connect(self.begin)
         self.thread1.start()  # 启动线程
+
+    def handle_radio(self):
+        if self.ui.radioButton.isChecked():
+            rg.isselected(1)
+        else:
+            rg.isselected(0)
 
     def callback(self, string):
         self.ui.textBrowser.append(string)
