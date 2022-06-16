@@ -1,0 +1,1 @@
+﻿networkxnumpyscikit-learnmatplotlibtensorflow_gpu==1.4.0h5py==2.10.0pyparsing==2.4.7
